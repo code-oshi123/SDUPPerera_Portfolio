@@ -5,7 +5,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projectsData } from "@/data/portfolioData";
-import { Search, Filter, ArrowUpRight, FolderOpen } from "lucide-react";
+import { Search, FolderOpen, Terminal, FileText, CheckCircle2, ChevronRight } from "lucide-react";
 import GithubRepoGrid from "@/components/GithubRepoGrid";
 
 export default function ProjectsHub() {
@@ -32,18 +32,19 @@ export default function ProjectsHub() {
     <>
       <Navbar />
 
-      <main className="flex-grow py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-surface/5 to-transparent dark:from-surface-secondary/5">
+      <main className="flex-grow py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-surface/5 to-transparent dark:from-surface-secondary/5 text-left">
         <div className="max-w-7xl mx-auto space-y-12">
+          
           {/* Header */}
           <div className="space-y-3 text-center lg:text-left">
             <span className="text-xs font-semibold tracking-widest text-accent-clr uppercase">
-              Technical Directory
+              Operational Directory
             </span>
             <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-primary-txt">
-              Projects Repository
+              Project Command Center
             </h1>
             <p className="text-sm text-muted-txt max-w-2xl leading-relaxed">
-              Explore the technical portfolio, including currently deployed software builds, academic milestones, and future project designs outlining requirements and testing strategies.
+              Active project specification files detailing user requirements, testing assertions, sprint execution logs, and architecture parameters.
             </p>
             <div className="w-12 h-[2px] bg-accent-clr mx-auto lg:mx-0 mt-2" />
           </div>
@@ -55,7 +56,7 @@ export default function ProjectsHub() {
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-txt" />
               <input
                 type="text"
-                placeholder="Search projects by title, tech (e.g. C#), role..."
+                placeholder="Query specification directories (e.g. C#, QA, Lead)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-9 pr-4 py-2 text-xs rounded border border-accent-clr/20 bg-primary-bg text-primary-txt focus:outline-none focus:border-accent-clr"
@@ -65,9 +66,9 @@ export default function ProjectsHub() {
             {/* Filter Tabs */}
             <div className="flex gap-1.5 w-full sm:w-auto overflow-x-auto">
               {[
-                { label: "All Projects", val: "all" },
-                { label: "Completed / Active", val: "existing" },
-                { label: "Design Blueprint / Future", val: "future" },
+                { label: "All Specifications", val: "all" },
+                { label: "Deployed Builds", val: "existing" },
+                { label: "Future Blueprints", val: "future" },
               ].map((btn) => (
                 <button
                   key={btn.val}
@@ -84,28 +85,35 @@ export default function ProjectsHub() {
             </div>
           </div>
 
-          {/* Grid Display */}
+          {/* Directory Folder Layout */}
           {filteredProjects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project) => (
                 <div
                   key={project.id}
-                  className="rounded-2xl border border-accent-clr/15 bg-card-bg p-6 flex flex-col justify-between space-y-6 premium-border"
+                  className="rounded-2xl border border-accent-clr/15 bg-card-bg/65 p-6 flex flex-col justify-between space-y-6 premium-border relative overflow-hidden"
                 >
+                  {/* Status Indicator Bar */}
+                  <div className="absolute top-0 inset-x-0 h-1 bg-accent-clr/25" />
+
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="px-2 py-0.5 rounded bg-surface/20 dark:bg-surface-secondary/20 border border-accent-clr/10 text-[9px] font-bold text-accent-clr uppercase tracking-wider">
-                        {project.category}
+                    {/* Folder Metadata */}
+                    <div className="flex items-center justify-between text-[9px] font-mono text-muted-txt select-none">
+                      <span className="flex items-center gap-1.5">
+                        <Terminal className="h-3 w-3 text-accent-clr" />
+                        <span>DIR: {project.id.toUpperCase()}_SPEC</span>
                       </span>
-                      <span className="text-[10px] text-muted-txt font-semibold">{project.period}</span>
+                      <span className="px-2 py-0.5 rounded border border-accent-clr/20 text-accent-clr font-semibold bg-surface/10 uppercase">
+                        {project.type === "Existing" ? "Deployed" : "Blueprint"}
+                      </span>
                     </div>
 
                     <div className="space-y-1">
-                      <h3 className="font-serif text-lg font-bold text-primary-txt">
+                      <h3 className="font-serif text-lg font-bold text-primary-txt leading-snug">
                         {project.title}
                       </h3>
                       <p className="text-[10px] text-accent-clr font-semibold">
-                        Role: {project.role}
+                        Lead Role: {project.role}
                       </p>
                     </div>
 
@@ -114,11 +122,11 @@ export default function ProjectsHub() {
                     </p>
 
                     {/* Tech Badges */}
-                    <div className="flex flex-wrap gap-1.5 pt-2">
+                    <div className="flex flex-wrap gap-1.5 pt-1">
                       {project.tech.map((t, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-0.5 rounded bg-surface-secondary/10 text-[9px] font-semibold text-primary-txt"
+                          className="px-2 py-0.5 rounded bg-surface-secondary/15 text-[9px] font-semibold text-primary-txt"
                         >
                           {t}
                         </span>
@@ -126,12 +134,16 @@ export default function ProjectsHub() {
                     </div>
                   </div>
 
+                  {/* Open File Link */}
                   <Link
                     href={`/projects/${project.id}`}
-                    className="text-xs font-semibold text-accent-clr flex items-center gap-1.5 hover:underline group pt-2"
+                    className="text-xs font-semibold text-accent-clr flex items-center justify-between hover:underline pt-3 border-t border-accent-clr/10 group"
                   >
-                    <span>View Specifications</span>
-                    <ArrowUpRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <span className="flex items-center gap-1.5">
+                      <FileText className="h-4 w-4" />
+                      <span>Open Project Specification</span>
+                    </span>
+                    <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>
               ))}
@@ -139,14 +151,14 @@ export default function ProjectsHub() {
           ) : (
             <div className="text-center py-20 rounded-2xl border border-dashed border-accent-clr/20 bg-card-bg/10 space-y-3">
               <FolderOpen className="h-10 w-10 text-muted-txt mx-auto" />
-              <h3 className="font-serif text-lg font-bold text-primary-txt">No Projects Found</h3>
+              <h3 className="font-serif text-lg font-bold text-primary-txt">Directory Empty</h3>
               <p className="text-xs text-muted-txt">
-                Try refining your search terms or choosing a different filter category.
+                No specification sheets matched your active search query parameters.
               </p>
             </div>
           )}
 
-          {/* Dynamic GitHub Repos Section */}
+          {/* GitHub Spec Sheet Grid */}
           <div className="pt-16 border-t border-accent-clr/15">
             <GithubRepoGrid />
           </div>

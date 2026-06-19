@@ -14,6 +14,38 @@ const roles = [
   "Software Engineer"
 ];
 
+const floatingEcosystem = [
+  { name: "Agile Scrum", className: "top-10 left-10 lg:left-24 animate-float-slow" },
+  { name: "QA & Testing", className: "bottom-24 left-10 lg:left-36 animate-float-slower" },
+  { name: "Business Analysis", className: "top-24 right-10 lg:right-32 animate-float-slow" },
+  { name: "Project Management", className: "bottom-16 right-10 lg:right-36 animate-float-slower" },
+  { name: "Software Eng", className: "top-1/2 left-8 animate-float-slow" },
+];
+
+function AnimatedCounter({ endValue, duration = 1500 }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    if (endValue === 0) return;
+    
+    const increment = endValue / (duration / 16); // ~60fps
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= endValue) {
+        setCount(endValue);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [endValue, duration]);
+
+  return <span>{count}</span>;
+}
+
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("card"); // "card" | "terminal"
@@ -162,9 +194,21 @@ and Agile scrum coordination.`;
   };
 
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-surface/10 to-transparent dark:from-surface-secondary/5 dark:to-transparent">
+    <section id="home" className="relative min-h-[95vh] flex items-center justify-center overflow-hidden py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-surface/10 to-transparent dark:from-surface-secondary/5 dark:to-transparent">
       {/* Background Animation */}
       <HeroBgAnimation />
+
+      {/* Floating Ecosystem Badges */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block select-none opacity-50">
+        {floatingEcosystem.map((item, idx) => (
+          <div
+            key={idx}
+            className={`absolute px-3 py-1.5 rounded-full border border-accent-clr/20 bg-card-bg/60 backdrop-blur-sm text-[9px] font-bold tracking-wider uppercase text-accent-clr shadow-sm ${item.className}`}
+          >
+            {item.name}
+          </div>
+        ))}
+      </div>
 
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
@@ -200,18 +244,43 @@ and Agile scrum coordination.`;
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             className="text-base sm:text-lg text-muted-txt max-w-xl mx-auto lg:mx-0 leading-relaxed font-sans"
           >
             Bridging business needs, software quality, and technology solutions through analytical thinking, collaboration, leadership, and continuous learning.
           </motion.p>
+
+          {/* Animated Metrics Dashboard */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-3 sm:grid-cols-5 gap-3 max-w-xl mx-auto lg:mx-0 pt-3 pb-4 text-left border-y border-accent-clr/15"
+          >
+            {[
+              { label: "Projects Done", val: 8 },
+              { label: "Credentials", val: 7 },
+              { label: "Tech Stack", val: 12 },
+              { label: "Case Studies", val: 5 },
+              { label: "GitHub Repos", val: 15 }
+            ].map((stat, idx) => (
+              <div key={idx} className="space-y-0.5">
+                <span className="text-xl sm:text-2xl font-bold font-serif text-accent-clr">
+                  <AnimatedCounter endValue={stat.val} />+
+                </span>
+                <span className="block text-[8px] sm:text-[9px] font-bold tracking-wider text-muted-txt uppercase leading-tight">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </motion.div>
 
           {/* Action CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4"
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2"
           >
             <Link
               href="/case-studies"
@@ -244,7 +313,7 @@ and Agile scrum coordination.`;
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center justify-center lg:justify-start gap-5 pt-6 text-muted-txt"
+            className="flex items-center justify-center lg:justify-start gap-5 pt-4 text-muted-txt"
           >
             <a
               href="https://linkedin.com/in/ushani-perera"
@@ -308,14 +377,19 @@ and Agile scrum coordination.`;
             className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96"
           >
             {activeTab === "card" ? (
-              /* Original Profile Card Frame */
+              /* Original Profile Card Frame with Professional Portrait */
               <div className="absolute inset-0 rounded-2xl border border-accent-clr/20 glass overflow-hidden flex items-center justify-center p-4">
                 <div className="w-full h-full rounded-xl border border-accent-clr/10 bg-surface/10 dark:bg-card-bg/25 flex flex-col items-center justify-center text-center p-6 relative">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-surface-secondary/20 dark:bg-surface-secondary/15 flex items-center justify-center mb-6 border border-accent-clr/20">
-                    <span className="font-serif text-3xl sm:text-4xl font-light text-accent-clr tracking-widest">
-                      UP
-                    </span>
+                  
+                  {/* Portrait Image Frame */}
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden mb-5 border-2 border-accent-clr/30 shadow-md bg-surface/30">
+                    <img 
+                      src="/ushani_portrait.png" 
+                      alt="Ushani Perera" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
+
                   <h2 className="font-serif text-lg font-bold tracking-wider text-primary-txt">
                     Ushani Perera
                   </h2>

@@ -3,7 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projectsData } from "@/data/portfolioData";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Github, ExternalLink, FileText, CheckCircle2, AlertTriangle, Lightbulb } from "lucide-react";
+import { ArrowLeft, Github, ExternalLink, FileText, CheckCircle2, AlertTriangle, Lightbulb, Users, Settings, ClipboardCheck } from "lucide-react";
+import ProjectSpecTabs from "./ProjectSpecTabs";
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -23,7 +24,7 @@ export default async function ProjectDetail({ params }) {
     <>
       <Navbar />
 
-      <main className="flex-grow py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-surface/5 to-transparent dark:from-surface-secondary/5">
+      <main className="flex-grow py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-surface/5 to-transparent dark:from-surface-secondary/5 text-left">
         <div className="max-w-5xl mx-auto space-y-10">
           
           {/* Back button */}
@@ -32,20 +33,20 @@ export default async function ProjectDetail({ params }) {
             className="inline-flex items-center gap-2 text-xs font-semibold text-accent-clr hover:text-primary-txt transition-colors group"
           >
             <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
-            <span>Back to Projects</span>
+            <span>Back to Command Center</span>
           </Link>
 
           {/* Heading */}
           <div className="space-y-4 pb-8 border-b border-accent-clr/15">
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="px-2.5 py-0.5 rounded bg-surface/20 dark:bg-surface-secondary/20 border border-accent-clr/10 text-[10px] font-bold text-accent-clr uppercase tracking-wider">
+              <span className="px-2.5 py-0.5 rounded bg-surface/25 dark:bg-surface-secondary/20 border border-accent-clr/10 text-[9px] font-bold text-accent-clr uppercase tracking-wider">
                 {project.category}
               </span>
               <span className="text-xs text-muted-txt font-semibold">
                 Timeline: {project.period}
               </span>
-              <span className="text-xs text-muted-txt font-semibold px-2 py-0.5 border border-accent-clr/10 rounded">
-                {project.type}
+              <span className="text-xs text-muted-txt font-semibold px-2 py-0.5 border border-accent-clr/10 rounded uppercase">
+                {project.type === "Existing" ? "Deployed" : "Blueprint"}
               </span>
             </div>
 
@@ -55,7 +56,7 @@ export default async function ProjectDetail({ params }) {
                   {project.title}
                 </h1>
                 <p className="text-xs text-accent-clr font-semibold">
-                  Role Played: {project.role}
+                  Role: {project.role}
                 </p>
               </div>
 
@@ -69,7 +70,7 @@ export default async function ProjectDetail({ params }) {
                     className="px-4 py-2 rounded bg-accent-clr text-white dark:text-primary-bg flex items-center gap-1.5 hover:bg-surface-secondary transition-colors"
                   >
                     <Github className="h-4 w-4" />
-                    <span>View Repository</span>
+                    <span>Repository</span>
                   </a>
                 )}
                 
@@ -81,7 +82,7 @@ export default async function ProjectDetail({ params }) {
                     className="px-4 py-2 rounded border border-accent-clr/30 hover:bg-surface/20 dark:hover:bg-surface-secondary/15 transition-colors flex items-center gap-1.5"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    <span>Live Demonstration</span>
+                    <span>Live Demo</span>
                   </a>
                 )}
 
@@ -92,144 +93,23 @@ export default async function ProjectDetail({ params }) {
                     className="px-4 py-2 rounded bg-surface/30 dark:bg-surface-secondary/20 border border-accent-clr/15 hover:border-accent-clr transition-all flex items-center gap-1.5"
                   >
                     <FileText className="h-4 w-4 text-accent-clr" />
-                    <span>Spec Sheet</span>
+                    <span>Download Spec</span>
                   </a>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Project Details Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            
-            {/* Left/Main Column: Overview, Objectives, Challenges */}
-            <div className="lg:col-span-2 space-y-8">
-              
-              {/* Overview */}
-              <section className="space-y-3">
-                <h2 className="font-serif text-xl font-bold text-primary-txt">
-                  Project Overview
-                </h2>
-                <p className="text-sm text-muted-txt leading-relaxed">
-                  {project.overview}
-                </p>
-              </section>
-
-              {/* Problem Statement */}
-              <section className="p-5 rounded-xl bg-rose-500/5 border border-rose-500/15 space-y-2">
-                <h2 className="font-serif text-sm font-bold text-rose-500 flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4" />
-                  <span>Problem Statement</span>
-                </h2>
-                <p className="text-xs text-muted-txt leading-relaxed">
-                  {project.problem}
-                </p>
-              </section>
-
-              {/* Business Objective */}
-              <section className="p-5 rounded-xl bg-emerald-500/5 border border-emerald-500/15 space-y-2">
-                <h2 className="font-serif text-sm font-bold text-emerald-500 flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" />
-                  <span>Business Objective</span>
-                </h2>
-                <p className="text-xs text-muted-txt leading-relaxed">
-                  {project.objective}
-                </p>
-              </section>
-
-              {/* Responsibilities */}
-              <section className="space-y-3">
-                <h2 className="font-serif text-xl font-bold text-primary-txt">
-                  Responsibilities & Role Focus
-                </h2>
-                <p className="text-sm text-muted-txt leading-relaxed">
-                  {project.responsibilities}
-                </p>
-              </section>
-
-              {/* Challenges & Lessons */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-accent-clr/10">
-                <div className="space-y-2">
-                  <h3 className="font-serif text-sm font-bold text-primary-txt">
-                    Challenges Faced
-                  </h3>
-                  <p className="text-xs text-muted-txt leading-relaxed">
-                    {project.challenges}
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="font-serif text-sm font-bold text-accent-clr flex items-center gap-1.5">
-                    <Lightbulb className="h-4 w-4" />
-                    <span>Lessons Learned</span>
-                  </h3>
-                  <p className="text-xs text-muted-txt leading-relaxed">
-                    {project.lessons}
-                  </p>
-                </div>
-              </div>
-
+          {/* Project Details Workspace */}
+          <div className="rounded-2xl border border-accent-clr/15 glass p-6 sm:p-8 shadow-md">
+            {/* Folder Header Tag */}
+            <div className="flex justify-between items-center text-[9px] font-mono text-muted-txt border-b border-accent-clr/15 pb-4 mb-6 select-none">
+              <span>FILE: {project.id.toUpperCase()}_SPECIFICATION_SHEET.TXT</span>
+              <span>CLASSIFICATION: CONFIDENTIAL</span>
             </div>
 
-            {/* Right/Meta Column: Tech stacks, Key Features, Gallery placeholders */}
-            <div className="space-y-8">
-              
-              {/* Technologies */}
-              <div className="p-6 rounded-xl border border-accent-clr/15 bg-card-bg space-y-4">
-                <h3 className="text-xs font-bold text-primary-txt uppercase tracking-wider">
-                  Technologies Applied
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-1 rounded bg-primary-bg border border-accent-clr/10 text-xs font-semibold text-primary-txt"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Features List */}
-              <div className="p-6 rounded-xl border border-accent-clr/15 glass space-y-4">
-                <h3 className="text-xs font-bold text-primary-txt uppercase tracking-wider">
-                  Key System Features
-                </h3>
-                <ul className="space-y-3">
-                  {project.features.map((feat, idx) => (
-                    <li key={idx} className="flex gap-2 items-start text-xs text-muted-txt leading-relaxed">
-                      <CheckCircle2 className="h-4 w-4 text-accent-clr flex-shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Minimal Mockup Gallery */}
-              <div className="p-6 rounded-xl border border-accent-clr/15 bg-card-bg/60 space-y-4">
-                <h3 className="text-xs font-bold text-primary-txt uppercase tracking-wider">
-                  System Architecture Preview
-                </h3>
-                {/* Visual Placeholder mimicking system drawing */}
-                <div className="h-40 rounded-lg border border-accent-clr/20 bg-primary-bg flex flex-col items-center justify-center text-center p-4 relative overflow-hidden group">
-                  <div className="w-10 h-10 rounded bg-surface/20 border border-accent-clr/25 flex items-center justify-center text-[10px] text-accent-clr mb-2 font-mono">
-                    SVG
-                  </div>
-                  <span className="text-[10px] font-bold text-primary-txt tracking-wide uppercase">
-                    Workflow Wireframe
-                  </span>
-                  <span className="text-[9px] text-muted-txt mt-1">
-                    System entity relationships and dashboard flow mappings.
-                  </span>
-                  {/* Fine vector details */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-accent-clr/30" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-accent-clr/30" />
-                </div>
-              </div>
-
-            </div>
-
+            {/* Client Tab Manager */}
+            <ProjectSpecTabs project={project} />
           </div>
 
         </div>

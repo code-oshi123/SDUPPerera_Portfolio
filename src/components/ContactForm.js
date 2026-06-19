@@ -148,8 +148,12 @@ export default function ContactForm() {
           </div>
 
           {/* Form Column */}
-          <div className="lg:col-span-7 rounded-2xl border border-accent-clr/15 glass p-8 flex flex-col justify-center">
+          <div className="lg:col-span-7 rounded-2xl border border-accent-clr/15 glass p-8 flex flex-col justify-center text-left">
             <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Simulated Mode Indicator */}
+              <div className="text-[9px] font-mono text-muted-txt/80 border-b border-accent-clr/10 pb-2 mb-1 select-none leading-relaxed">
+                * SYSTEM NOTICE: Form runs in SIMULATED mode. Connect EmailJS env keys to enable direct mail routing.
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label htmlFor="name" className="text-[10px] font-bold tracking-wider uppercase text-primary-txt">

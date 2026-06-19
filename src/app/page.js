@@ -1,18 +1,19 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
+import CareerRoadmap from "@/components/CareerRoadmap";
+import SkillGalaxy from "@/components/SkillGalaxy";
 import Strengths from "@/components/Strengths";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
+import RecruiterDashboard from "@/components/RecruiterDashboard";
+import AskUshaniAI from "@/components/AskUshaniAI";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import { projectsData, caseStudiesData } from "@/data/portfolioData";
 import { ArrowUpRight, BookOpen, Layers } from "lucide-react";
 
 export default function Home() {
-  // Highlight first 3 projects & case studies on home page
   const featuredProjects = projectsData.slice(0, 3);
   const featuredCaseStudies = caseStudiesData.slice(0, 3);
 
@@ -24,14 +25,17 @@ export default function Home() {
         {/* Hero Section */}
         <Hero />
 
-        {/* About Section */}
-        <About />
+        {/* Career Roadmap (Replaced About) */}
+        <CareerRoadmap />
 
-        {/* Skills Section */}
-        <Skills />
+        {/* Skill Galaxy (Replaced Skills) */}
+        <SkillGalaxy />
 
         {/* Strengths Section */}
         <Strengths />
+
+        {/* Recruiter Metrics Dashboard */}
+        <RecruiterDashboard />
 
         {/* Experience Section */}
         <Experience />
@@ -175,6 +179,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Recruitment Assistant (Ask About Ushani) */}
+        <AskUshaniAI />
 
         {/* Contact Section */}
         <ContactForm />
