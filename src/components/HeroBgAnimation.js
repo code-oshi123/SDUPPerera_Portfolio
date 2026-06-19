@@ -22,16 +22,19 @@ export default function HeroBgAnimation() {
     };
     window.addEventListener("resize", handleResize);
 
-    // Nodes representing process steps or flow states
-    const nodeCount = 40;
+    // Characters representing binary data and coding syntax
+    const characters = ["0", "1", "{", "}", "[", "]", "(", ")", "<", ">", ";", "++", "=>"];
+    const nodeCount = 45;
     const nodes = [];
+    
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.22, // slow drifting
+        vy: (Math.random() - 0.5) * 0.22,
+        char: characters[Math.floor(Math.random() * characters.length)],
+        fontSize: Math.floor(Math.random() * 5) + 10, // 10px to 14px
       });
     }
 
@@ -40,40 +43,39 @@ export default function HeroBgAnimation() {
 
       // Grab current theme state
       const isDark = document.documentElement.classList.contains("dark");
-      const nodeColor = isDark ? "rgba(216, 198, 176, 0.3)" : "rgba(192, 178, 160, 0.4)";
-      const lineColor = isDark ? "rgba(216, 198, 176, 0.06)" : "rgba(192, 178, 160, 0.08)";
+      const nodeColor = isDark ? "rgba(216, 198, 176, 0.25)" : "rgba(110, 90, 71, 0.3)";
+      const lineColor = isDark ? "rgba(216, 198, 176, 0.05)" : "rgba(110, 90, 71, 0.06)";
 
-      // Draw process lines
+      // Draw data connections (network lines)
       for (let i = 0; i < nodeCount; i++) {
         for (let j = i + 1; j < nodeCount; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 180) {
+          if (dist < 160) {
             ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.moveTo(nodes[i].x, nodes[i].y - 4); // offset slightly for center of character
+            ctx.lineTo(nodes[j].x, nodes[j].y - 4);
             ctx.strokeStyle = lineColor;
-            ctx.lineWidth = 0.8;
+            ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         }
       }
 
-      // Draw nodes
+      // Draw drifting characters
       nodes.forEach((node) => {
         node.x += node.vx;
         node.y += node.vy;
 
-        // Bouncing walls
-        if (node.x < 0 || node.x > width) node.vx *= -1;
-        if (node.y < 0 || node.y > height) node.vy *= -1;
+        // Bouncing boundaries
+        if (node.x < 10 || node.x > width - 10) node.vx *= -1;
+        if (node.y < 15 || node.y > height - 10) node.vy *= -1;
 
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.font = `${node.fontSize}px monospace`;
         ctx.fillStyle = nodeColor;
-        ctx.fill();
+        ctx.fillText(node.char, node.x, node.y);
       });
 
       animationFrameId = requestAnimationFrame(draw);

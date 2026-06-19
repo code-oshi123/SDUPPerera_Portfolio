@@ -14,13 +14,13 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #d8c6b0;
   --foreground: #2f2f2f;
-  --surface: #f5dfd1;
-  --surface-secondary: #d8c6b0;
-  --accent-clr: #c0b2a0;
-  --muted-txt: #7a7a7a;
-  --card-bg: #fefcfb;
+  --surface: #c0b2a0;
+  --surface-secondary: #bbaea0;
+  --accent-clr: #6e5a47;
+  --muted-txt: #5c5246;
+  --card-bg: #f5dfd1;
   
   --font-sans: var(--font-geist-sans);
   --font-serif: var(--font-serif);

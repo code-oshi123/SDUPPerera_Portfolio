@@ -4,7 +4,8 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Strengths from "@/components/Strengths";
-import ExperienceEducation from "@/components/ExperienceEducation";
+import Experience from "@/components/Experience";
+import Education from "@/components/Education";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import { projectsData, caseStudiesData } from "@/data/portfolioData";
@@ -32,8 +33,11 @@ export default function Home() {
         {/* Strengths Section */}
         <Strengths />
 
-        {/* Experience & Education Section */}
-        <ExperienceEducation />
+        {/* Experience Section */}
+        <Experience />
+
+        {/* Education Section */}
+        <Education />
 
         {/* Featured Case Studies Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-accent-clr/10 bg-card-bg/25">

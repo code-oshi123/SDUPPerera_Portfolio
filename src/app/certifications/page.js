@@ -12,7 +12,7 @@ const certificationsData = [
     date: "2024",
     category: "Technical",
     skills: ["API Testing", "Postman Assertions", "Mock Servers"],
-    link: "#",
+    link: "https://badgr.com/public/assertions/c0e9b98687a44f8ab4fcdcf5b99e7152",
   },
   {
     title: "Agile Project Management Foundations",
@@ -20,7 +20,7 @@ const certificationsData = [
     date: "2024",
     category: "LinkedIn Learning",
     skills: ["Agile", "Scrum Roles", "Sprint Metrics"],
-    link: "#",
+    link: "https://www.linkedin.com/learning/agile-project-management-foundations",
   },
   {
     title: "Business Analysis Foundations",
@@ -28,7 +28,7 @@ const certificationsData = [
     date: "2024",
     category: "LinkedIn Learning",
     skills: ["Elicitation", "BRD Drafting", "Stakeholder Management"],
-    link: "#",
+    link: "https://www.linkedin.com/learning/business-analysis-foundations",
   },
   {
     title: "Software QA Testing Foundations",
@@ -36,7 +36,7 @@ const certificationsData = [
     date: "2024",
     category: "LinkedIn Learning",
     skills: ["Manual Testing", "Bug Lifecycle", "Regression Testing"],
-    link: "#",
+    link: "https://www.linkedin.com/learning/software-qa-testing-foundations",
   },
   {
     title: "BSc (Hons) Computer Science Student Academic Progress",
@@ -44,7 +44,7 @@ const certificationsData = [
     date: "2023 - Present",
     category: "Academic",
     skills: ["Object-Oriented Programming", "Software Quality Assurance", "SQL Databases"],
-    link: "#",
+    link: "https://apiit.lk/",
   },
   {
     title: "Playwright Automation Testing Workshop Certificate",
@@ -52,7 +52,7 @@ const certificationsData = [
     date: "2024",
     category: "Workshops",
     skills: ["Playwright E2E", "Page Object Model", "UI Assertions"],
-    link: "#",
+    link: "https://apiit.lk/",
   },
   {
     title: "APIIT Annual Tech Hackathon Participant Record",
@@ -60,7 +60,7 @@ const certificationsData = [
     date: "2024",
     category: "Competitions",
     skills: ["Rapid Prototyping", "Team Coordination", "Pitching"],
-    link: "#",
+    link: "https://apiit.lk/",
   }
 ];
 
@@ -187,12 +187,8 @@ export default function Certifications() {
                   {/* Verification link */}
                   <a
                     href={cert.link}
-                    onClick={(e) => {
-                      if (cert.link === "#") {
-                        e.preventDefault();
-                        alert("Simulating credential link verification. In production, this redirects to LinkedIn Credential details or PDF documents.");
-                      }
-                    }}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-xs font-semibold text-accent-clr flex items-center gap-1.5 hover:underline group pt-2 border-t border-accent-clr/10"
                   >
                     <span>Verify Credential</span>
