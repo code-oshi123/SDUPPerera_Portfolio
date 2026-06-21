@@ -20,7 +20,7 @@ const certificationsData = [
     date: "2024",
     category: "LinkedIn Learning",
     skills: ["Agile", "Scrum Roles", "Sprint Metrics"],
-    link: "https://www.linkedin.com/learninhttps://www.linkedin.com/learning/certificates/69d88f14417622b0ddfe568130ce82af20cf5b35ec1ec888a292aecfb607be50?u=180139196,
+    link: "https://www.linkedin.com/learning/certificates/69d88f14417622b0ddfe568130ce82af20cf5b35ec1ec888a292aecfb607be50?u=180139196",
   },
   {
     title: "Business Analysis Foundations",
