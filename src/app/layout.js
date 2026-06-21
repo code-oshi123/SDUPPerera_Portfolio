@@ -71,8 +71,8 @@ export default function RootLayout({ children }) {
     "description": "Bridging business needs, software quality, and technology solutions through analytical thinking, collaboration, leadership, and continuous learning.",
     "knowsAbout": ["Business Analysis", "Quality Assurance", "Project Coordination", "Software Engineering", "Agile Product Management"],
     "sameAs": [
-      "https://github.com/ushaniperera", // Fallback github
-      "https://linkedin.com/in/ushani-perera" // Fallback linkedin
+      "https://github.com/code-oshi123", // Fallback github
+      "https://www.linkedin.com/in/ushani-perera-36a95433a" // Fallback linkedin
     ]
   };
 

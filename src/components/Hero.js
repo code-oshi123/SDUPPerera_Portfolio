@@ -325,7 +325,7 @@ and Agile scrum coordination.`;
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="https://github.com/ushaniperera"
+              href="https://github.com/code-oshi123"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accent-clr transition-colors duration-200"

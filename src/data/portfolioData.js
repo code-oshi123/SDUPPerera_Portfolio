@@ -19,7 +19,7 @@ export const projectsData = [
     ],
     challenges: "Handling concurrent status updates from multiple dispatchers caused database transaction locks during peak hours.",
     lessons: "Implication of row-locking mechanisms and rate-limiting API endpoints optimized server durability under heavy transaction load.",
-    github: "https://github.com/ushaniperera/delivery-management-system",
+    github: "https://github.com/code-oshi123/Smart_Distribution_and_Delivery_Management_Syatem.git",
     demo: "#",
     documentation: "/docs/delivery-system-spec.pdf"
   },
@@ -43,7 +43,7 @@ export const projectsData = [
     ],
     challenges: "Balancing client request requirements with tight development timelines required strict scope-creep prevention.",
     lessons: "Using a MoSCoW prioritization model is key to keeping sprints aligned and delivering core functions without delay.",
-    github: "https://github.com/ushaniperera/ticket-management-system",
+    github: "https://github.com/code-oshi123/Ticket_Management-System.git",
     demo: "#",
     documentation: "/docs/ticket-system-brd.pdf"
   },
@@ -67,7 +67,7 @@ export const projectsData = [
     ],
     challenges: "Client changed checkout criteria mid-development, threatening the original launch schedule.",
     lessons: "Frequent sprint demonstrations and signed-off wireframes are vital to maintaining scope transparency.",
-    github: "https://github.com/ushaniperera/flower-shop",
+    github: "https://github.com/code-oshi123/Stemoras.git",
     demo: "#",
     documentation: "/docs/flower-shop-specs.pdf"
   },
@@ -91,7 +91,7 @@ export const projectsData = [
     ],
     challenges: "Rendering complex SVGs on mobile devices initially caused frame drops and interface sluggishness.",
     lessons: "Optimizing DOM structures and offloading calculation tasks via debounced triggers restored 60fps scrolling on budget phones.",
-    github: "https://github.com/ushaniperera/global-tapestry",
+    github: "https://ushaniprarthana593.wixsite.com/aglobaltapestry",
     demo: "#",
     documentation: "/docs/global-tapestry-plan.pdf"
   },

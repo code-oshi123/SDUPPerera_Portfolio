@@ -7,7 +7,7 @@ const fallbackRepos = [
   {
     name: "delivery-management-system",
     description: "Enterprise courier distribution portal with route calculations, dynamic updates, and SMS notifications.",
-    html_url: "https://github.com/ushaniperera/delivery-management-system",
+    html_url: "https://github.com/code-oshi123/Smart_Distribution_and_Delivery_Management_Syatem.git",
     stargazers_count: 5,
     forks_count: 2,
     language: "JavaScript"
@@ -15,7 +15,7 @@ const fallbackRepos = [
   {
     name: "ticket-management-system",
     description: "Internal IT helpdesk support platform built in C# with automated priority assignments.",
-    html_url: "https://github.com/ushaniperera/ticket-management-system",
+    html_url: "https://github.com/code-oshi123/Ticket_Management-System.git",
     stargazers_count: 3,
     forks_count: 1,
     language: "C#"
@@ -23,7 +23,7 @@ const fallbackRepos = [
   {
     name: "flower-shop-ecommerce",
     description: "Retail e-commerce frontend custom checkout calendars and order tracking triggers.",
-    html_url: "https://github.com/ushaniperera/flower-shop",
+    html_url: "https://github.com/code-oshi123/Stemoras.git",
     stargazers_count: 4,
     forks_count: 0,
     language: "JavaScript"
@@ -39,7 +39,7 @@ export default function GithubRepoGrid() {
     async function fetchRepos() {
       try {
         const res = await fetch(
-          "https://api.github.com/users/ushaniperera/repos?sort=updated&per_page=6"
+          "https://api.github.com/users/code-oshi123/repos?sort=updated&per_page=6"
         );
         if (!res.ok) {
           throw new Error("GitHub API limit exceeded or user not found");

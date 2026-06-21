@@ -130,12 +130,12 @@ export default function ContactForm() {
                   <div>
                     <span className="block font-semibold text-primary-txt">GitHub</span>
                     <a
-                      href="https://github.com/ushaniperera"
+                      href="https://github.com/code-oshi123"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-accent-clr"
                     >
-                      github.com/ushaniperera
+                      https://github.com/code-oshi123
                     </a>
                   </div>
                 </div>

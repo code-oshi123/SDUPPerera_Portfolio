@@ -12,7 +12,7 @@ const certificationsData = [
     date: "2024",
     category: "Technical",
     skills: ["API Testing", "Postman Assertions", "Mock Servers"],
-    link: "https://badgr.com/public/assertions/c0e9b98687a44f8ab4fcdcf5b99e7152",
+    link: "https://www.linkedin.com/learning/certificates/427e3d1ef8cab2a8a57a959a80d9e7bb093576e0e963f5b07fa6e7bcf1a0b8fc?u=180139196",
   },
   {
     title: "Agile Project Management Foundations",
@@ -20,7 +20,7 @@ const certificationsData = [
     date: "2024",
     category: "LinkedIn Learning",
     skills: ["Agile", "Scrum Roles", "Sprint Metrics"],
-    link: "https://www.linkedin.com/learning/agile-project-management-foundations",
+    link: "https://www.linkedin.com/learninhttps://www.linkedin.com/learning/certificates/69d88f14417622b0ddfe568130ce82af20cf5b35ec1ec888a292aecfb607be50?u=180139196,
   },
   {
     title: "Business Analysis Foundations",
