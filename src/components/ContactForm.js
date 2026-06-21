@@ -23,9 +23,9 @@ export default function ContactForm() {
     setStatus("loading");
 
     // EmailJS credentials from environment variables
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const serviceId = service_w2bun0e;
+    const templateId = template_r6yanpg;
+    const publicKey = IejGs_yJAZkOkb-CJ;
 
     if (!serviceId || !templateId || !publicKey) {
       // Simulation mode fallback
